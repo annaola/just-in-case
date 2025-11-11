@@ -9,7 +9,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,7 +21,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.folklore.justincase.ui.component.TransparentTextField
 import com.folklore.justincase.ui.theme.JustInCaseTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,10 +52,9 @@ fun NoteScreen(onBack: () -> Unit) {
             )
         }
     ) { innerPadding ->
-        TextField(
+        TransparentTextField(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
                 .padding(innerPadding)
                 .focusRequester(focusRequester),
             value = text,
