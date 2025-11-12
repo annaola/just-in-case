@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class NoteEntity(
+internal data class NoteEntity(
     @PrimaryKey val id: String,
     @ColumnInfo(name = "timestamp") val timestamp: Long,
     @ColumnInfo(name = "title") val title: String?,
