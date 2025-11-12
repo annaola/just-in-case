@@ -6,16 +6,15 @@ plugins {
 
 android {
     namespace = "com.folklore.justincase"
-    compileSdk {
-        version = release(project.findProperty("COMPILE_SDK")?.toString()?.toInt() ?: 36)
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.folklore.justincase"
-        minSdk = project.findProperty("MIN_SDK")?.toString()?.toInt() ?: 28
-        targetSdk = project.findProperty("TARGET_SDK")?.toString()?.toInt() ?: 36
         versionCode = 1
         versionName = "1.0"
+
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,12 +28,13 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true

@@ -6,21 +6,19 @@ plugins {
 android {
     namespace = "com.folklore.justincase.data"
 
-    compileSdk {
-        version = release(project.findProperty("COMPILE_SDK")?.toString()?.toInt() ?: 36)
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = project.findProperty("MIN_SDK")?.toString()?.toInt() ?: 28
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 }
 
