@@ -7,4 +7,3 @@ import androidx.room.RoomDatabase
 internal abstract class JustInCaseDatabase : RoomDatabase() {
     abstract fun notesDao(): NotesDao
 }
-

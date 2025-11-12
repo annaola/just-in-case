@@ -26,4 +26,3 @@ internal interface NotesDao {
     @Query("SELECT * FROM NoteEntity WHERE id = :id LIMIT 1")
     fun getById(id: String): NoteEntity?
 }
-
