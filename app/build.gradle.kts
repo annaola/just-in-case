@@ -7,13 +7,13 @@ plugins {
 android {
     namespace = "com.folklore.justincase"
     compileSdk {
-        version = release(36)
+        version = release(project.findProperty("COMPILE_SDK")?.toString()?.toInt() ?: 36)
     }
 
     defaultConfig {
         applicationId = "com.folklore.justincase"
-        minSdk = 28
-        targetSdk = 36
+        minSdk = project.findProperty("MIN_SDK")?.toString()?.toInt() ?: 28
+        targetSdk = project.findProperty("TARGET_SDK")?.toString()?.toInt() ?: 36
         versionCode = 1
         versionName = "1.0"
 
@@ -42,6 +42,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
