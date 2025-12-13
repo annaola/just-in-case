@@ -5,14 +5,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.folklore.justincase.ui.state.NoteTileUiState
 import java.time.format.DateTimeFormatter
@@ -25,13 +25,13 @@ fun NoteTileComponent(
     note: NoteTileUiState
 ) {
     val dateTimeFormatter = remember {
-        DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.getDefault())
+        DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+            .withLocale(Locale.getDefault())
     }
-    Card(
+    ElevatedCard(
         modifier = modifier
-            .wrapContentHeight()
-            .heightIn(max = 240.dp),
-        elevation = CardDefaults.cardElevation(4.dp),
+            .heightIn(max = 240.dp)
+            .wrapContentHeight(),
     ) {
         Column(
             modifier = Modifier
@@ -39,15 +39,22 @@ fun NoteTileComponent(
                 .fillMaxWidth()
         ) {
             note.title?.let {
-                Text(text = it, style = MaterialTheme.typography.headlineMedium)
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.headlineMedium
+                )
             }
             note.content?.let {
-                Text(text = it)
+                Text(
+                    modifier = Modifier.weight(1f, fill = false),
+                    text = it,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
             Text(
                 modifier = Modifier.align(Alignment.End),
                 text = dateTimeFormatter.format(note.dateTime),
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.bodySmall,
             )
         }
     }

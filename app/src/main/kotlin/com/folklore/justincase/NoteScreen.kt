@@ -35,8 +35,10 @@ private fun NoteScreenContent(onBack: () -> Unit, contentState: TextFieldState) 
     val keyboardController = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
-        keyboardController?.show()
+        if (contentState.text.isBlank()) {
+            focusRequester.requestFocus()
+            keyboardController?.show()
+        }
     }
 
     Scaffold(

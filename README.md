@@ -9,6 +9,7 @@ This is a sample Android app to experiment on.
 - [ ] Deleting notes
 - [ ] Custom items list
 - [ ] Nicer UI :wink:
+- [ ] Formatting date display
 
 ### Technical:
 - [ ] Add usecases and mappers
